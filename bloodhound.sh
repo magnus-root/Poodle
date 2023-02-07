@@ -29,7 +29,7 @@ do
         dirsearch -u $ip_
     elif [ $command == "s" ]; then
         read -p "Введите URL: " url_
-        gobuster dns -w /usr/share/wordlists/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -d $url_  -t 100
+        gobuster vhost -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt -u $url_  -t 100 --append-domain
     elif [ $command == "n" ]; then
         read -p "Введите IP: " ip_
         read -p "Введите до какого порта сканировать (масксимум 65535, стандартно 1000): " ports_
