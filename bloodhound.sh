@@ -33,7 +33,7 @@ do
     elif [ $command == "n" ]; then
         read -p "Введите IP: " ip_
         read -p "Введите до какого порта сканировать (масксимум 65535, стандартно 1000): " ports_
-        nmap -sC -sV -p -$ports_ --min-rate 5000 $ip_
+        nmap -sC -sV -p -$ports_ --min-rate 5000 --min-hostgroup 256 $ip_
         read -p  "Успешно? Если да, то нажмите y, если нет и проблема в блокировке ping, то нажмите pg для повторного сканирования с отключенным пингом: " result_
         if [ $result_ == "y" ]; then
             continue
