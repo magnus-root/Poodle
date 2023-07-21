@@ -2,16 +2,13 @@
 
 cat << EOF
 
- #      ""#                      #  #                               #
- #mmm     #     mmm    mmm    mmm#  # mm    mmm   m   m  m mm    mmm#
- #" "#    #    #" "#  #" "#  #" "#  #"  #  #" "#  #   #  #"  #  #" "#
- #   #    #    #   #  #   #  #   #  #   #  #   #  #   #  #   #  #   #
- ##m#"    "mm  "#m#"  "#m#"  "#m##  #   #  "#m#"  "mm"#  #   #  "#m##                                                                           
-                                                           
+██████╗░░█████╗░░█████╗░██████╗░██╗░░░░░███████╗
+██╔══██╗██╔══██╗██╔══██╗██╔══██╗██║░░░░░██╔════╝
+██████╔╝██║░░██║██║░░██║██║░░██║██║░░░░░█████╗░░
+██╔═══╝░██║░░██║██║░░██║██║░░██║██║░░░░░██╔══╝░░
+██║░░░░░╚█████╔╝╚█████╔╝██████╔╝███████╗███████╗
+╚═╝░░░░░░╚════╝░░╚════╝░╚═════╝░╚══════╝╚══════╝                                                          
 EOF
-
-echo "Добро пожаловать в сканер iST"
-
 
 while :
 do
@@ -29,11 +26,11 @@ do
         dirsearch -u $ip_
     elif [ $command == "s" ]; then
         read -p "Введите URL: " url_
-        gobuster vhost -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt -u $url_  -t 100 --append-domain
+        gobuster dns -w /usr/share/wordlists/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -d $url_  -t 100
     elif [ $command == "n" ]; then
         read -p "Введите IP: " ip_
         read -p "Введите до какого порта сканировать (масксимум 65535, стандартно 1000): " ports_
-        nmap -sC -sV -p -$ports_ --min-rate 5000 --min-hostgroup 256 $ip_
+        nmap -sC -sV -p -$ports_ --min-rate 5000 $ip_
         read -p  "Успешно? Если да, то нажмите y, если нет и проблема в блокировке ping, то нажмите pg для повторного сканирования с отключенным пингом: " result_
         if [ $result_ == "y" ]; then
             continue
