@@ -14,6 +14,7 @@ EOF
 soft_=("nmap" "dirsearch" "gobuster" "wpscan")
 need_soft_=()
 your_terminal="gnome-terminal"
+path_to_scripts="/home/eroot/Apps"
 
 # Проверяем наличие установленных программ по списку и добавлением необходимого в пустой список.
 # Если программа установлена, но возле неё отображается галочка, если нет - крестик.
@@ -38,7 +39,7 @@ else
 fi
 echo "============================="
 # Если весь необходимый софт установлен, то запускается основной цикл
-if [[ ${need_soft_[@]} == 0 ]]; then    
+if [[ ${#need_soft_[@]} == 0 ]]; then    
     while :
     do  
         # Появляется запрос необходимого действия      
@@ -79,8 +80,8 @@ if [[ ${need_soft_[@]} == 0 ]]; then
             read -p "Введите IP/{direct}: " ip_
             wpscan --url $ip_ -e u 
             wpscan --url $ip_ -e ap
-        elif [ $command == "pass"]; then
-            $your_terminal  ./Modules/passcracker.sh
+        elif [ $command == "pass" ]; then
+            $your_terminal -e "$path_to_scripts/Poodle/Modules/passcracker.sh"
         else
     	    echo "Введено что-то не то. Попробуй ещё раз."
             echo " "
