@@ -10,8 +10,8 @@ cat << EOF
 ╚═╝░░░░░░╚════╝░░╚════╝░╚═════╝░╚══════╝╚══════╝                                                          
 EOF
 
-# Устанавливаем список необхожимого софта и список для записи того чего у нас ещё нет
-soft_=("nmap" "dirsearch" "gobuster" "wpscan")
+# Устанавливаем список необходимого софта и список для записи того чего у нас ещё нет
+soft_=("nmap" "dirsearch" "gobuster" "wpscan" "ffuf" "wfuzz")
 need_soft_=()
 your_terminal="gnome-terminal"
 path_to_scripts="/home/eroot/Apps"
