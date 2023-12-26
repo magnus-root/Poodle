@@ -14,7 +14,7 @@ EOF
 soft_=("nmap" "dirsearch" "gobuster" "wpscan" "ffuf" "wfuzz")
 need_soft_=()
 your_terminal="gnome-terminal"
-path_to_scripts="/home/eroot/Apps"
+path_to_scripts="/home/$USER/Apps"
 
 # Проверяем наличие установленных программ по списку и добавлением необходимого в пустой список.
 # Если программа установлена, но возле неё отображается галочка, если нет - крестик.
@@ -24,7 +24,7 @@ do
         echo -e "$program \033[32m✔\033[0m"
     else
         echo -e "$program \033[31m✘\033[0m"
-        need_soft_+="$program"
+        need_soft_+="$program\n"
     fi
 done
 
@@ -55,13 +55,13 @@ if [[ ${#need_soft_[@]} == 0 ]]; then
         echo "=========================================================="
         echo "Если Вы хотите выйти, то нажмите Ctrl + C"
         read command
-        # Согласно выбраной букве запускается необхожимая программа
+        # Согласно выбраной букве запускается необходимая программа
         if [ $command == "d" ]; then
             read -p "Введите IP: " ip_
             dirsearch -u $ip_
         elif [ $command == "s" ]; then
             read -p "Введите URL: " url_
-            gobuster dns -w $wordlists_ seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -d $url_  -t 100
+            gobuster dns -w $wordlists_/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -d $url_  -t 100
         elif [ $command == "n" ]; then
             read -p "Введите IP: " ip_
             read -p "Введите до какого порта сканировать (масксимум 65535, стандартно 1000): " ports_
