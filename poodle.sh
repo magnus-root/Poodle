@@ -105,15 +105,8 @@ while true; do
         do
             echo "$i"
         done
-        read -p "Устанавливаю? (Y-да, всё остальное нет): " install_or_not
-        if [[ $install_or_not == "Y" || $install_or_not == "y" || $install_or_not == "yes" ]]; then
-            for i in "${need_soft_[@]}"
-            do
-                sudo apt install -y $i
-                continue
-            done
-        else
-            break
-        fi
+        echo "Нажите любую клавишу для выхода"
+        read -n 1
+        break
     fi
 done
